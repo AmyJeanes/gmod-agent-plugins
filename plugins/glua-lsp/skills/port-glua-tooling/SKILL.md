@@ -16,7 +16,7 @@ Bootstrap the same tooling pattern used across AmyJeanes's GMod sibling repos. T
 
 Before editing, find:
 
-- Default branch (`main` vs `dev`).
+- Default branch (`main`).
 - Sibling deps in `.luarc.json` (`../Doors`, `../world-portals`, `../wire`, etc.) — these need `actions/checkout` steps in the lint job.
 - Existing CI shape: standalone `.github/workflows/glua-check.yml` to delete, or a multi-job `ci.yml` to extend (preserve unrelated jobs like `.NET`, workshop publish, combine-and-upload).
 - `renovate.json` location: `.github/` or root (a few repos pin it at root for `forkProcessing`).
@@ -93,9 +93,9 @@ After pushing, branch protection's required status check name moves from `glua-c
 
 Pick the closest shape:
 
-- `TARDIS`, `Doors`, `Safe-Space`, `Sonic-Screwdriver` — `dev` branch, `addon.json`, sibling deps, `.github/renovate.json`.
+- `TARDIS`, `Doors`, `Safe-Space`, `Sonic-Screwdriver` — `main` branch, `addon.json`, sibling deps, `.github/renovate.json`.
 - `world-portals` — base layer, no `addon.json`, `renovate.json` at repo root.
-- `GMod-MCP-Server` — `main` branch (not `dev`), parallel `.NET` CI job to preserve.
+- `GMod-MCP-Server` — `main` branch, parallel `.NET` CI job to preserve.
 
 ## What's intentionally not copied
 
