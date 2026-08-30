@@ -1,0 +1,20 @@
+{
+  "name": "gmod-agent-plugins",
+  "interface": {
+    "displayName": "GMod Agent Plugins"
+  },
+  "plugins": [
+    {
+      "name": "glua-lsp",
+      "source": {
+        "source": "local",
+        "path": "./plugins/glua-lsp"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Development"
+    }
+  ]
+}

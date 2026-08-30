@@ -1,0 +1,35 @@
+{
+  "name": "glua-lsp",
+  "version": "0.3.2",
+  "description": "GLua tooling workflows for Garry's Mod projects.",
+  "author": {
+    "name": "Amy Jeanes",
+    "url": "https://github.com/AmyJeanes"
+  },
+  "homepage": "https://github.com/AmyJeanes/gmod-claude-plugins/tree/main/plugins/glua-lsp",
+  "repository": "https://github.com/AmyJeanes/gmod-claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "garrys-mod",
+    "glua",
+    "lua",
+    "language-server",
+    "gmod"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "GLua LSP",
+    "shortDescription": "Set up and port GLua tooling.",
+    "longDescription": "Reusable GLua setup and porting workflows for Garry's Mod addon projects. Claude Code can also use this plugin's marketplace LSP declaration for project-local glua_ls diagnostics.",
+    "developerName": "Amy Jeanes",
+    "category": "Development",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Set up GLua tooling for this addon.",
+      "Port this GMod addon to GLua Check."
+    ],
+    "brandColor": "#1F8A70"
+  }
+}

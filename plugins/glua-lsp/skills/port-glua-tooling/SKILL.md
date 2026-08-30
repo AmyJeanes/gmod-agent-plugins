@@ -1,6 +1,6 @@
 ---
 name: port-glua-tooling
-description: Port a GMod addon repo to the standardized glua tooling pattern — pinned glua_check / glua_ls / glua-api stubs via scripts/install-tools.ps1, a one-line scripts/glua-check.ps1 runner, a CI workflow with a GLua Check job, Renovate customManager auto-bumps gated by CI, addon.json ignores, and VS Code Pollux extension pointing at the project-local binary. Use when starting a new GMod addon, when the user says "port <repo>" or "do this on <repo> too", or when an existing repo still has inline `gh api .../releases/latest` install steps in its CI workflow.
+description: Port a GMod addon repo to the standardized glua tooling pattern — pinned glua_check / glua_ls / glua-api stubs via scripts/install-tools.ps1, a one-line scripts/glua-check.ps1 runner, a CI workflow with a GLua Check job, Renovate customManager auto-bumps gated by CI, addon.json ignores, and VS Code Pollux extension pointing at the project-local binary. Use when starting a new GMod addon, when the user asks to port a repo or do the same setup in another repo, or when an existing repo still has inline `gh api .../releases/latest` install steps in its CI workflow.
 ---
 
 # Port a GMod addon to the standardized glua tooling pattern
@@ -10,7 +10,7 @@ Bootstrap the same tooling pattern used across AmyJeanes's GMod sibling repos. T
 - Pinned versions of `glua_check`, `glua_ls`, and `luttje/glua-api-snippets` stubs (single source of truth: `scripts/install-tools.ps1`).
 - One-line CI invocation for lint via `scripts/glua-check.ps1`.
 - Renovate `customManagers` regex auto-bumps the pinned versions, gated by the CI lint job.
-- VS Code Pollux extension and the `glua-lsp` Claude Code plugin both resolve `glua_ls` from each project's `.tools/bin/` (no global PATH plumbing).
+- VS Code's Pollux extension and the `glua-lsp` Claude Code plugin both resolve `glua_ls` from each project's `.tools/bin/` (no global PATH plumbing). Codex uses the same pinned installation through the check scripts and this plugin's skills, without a live LSP attachment.
 
 ## Survey first
 
@@ -79,15 +79,22 @@ Create or extend with:
 
 Some repos `.gitignore` the entire `.vscode/` dir except specific files — check for `!.vscode/settings.json` exception before assuming you can commit it.
 
-### 6. CLAUDE.md install section
+### 6. Agent guidance
 
-Replace any "install glua_ls binary on PATH" / "fetch GLua API stubs" snippets with a short pointer at `pwsh -File scripts/install-tools.ps1`. The `glua-lsp:install-glua-ls` skill covers the recovery flow.
+Put shared setup guidance in `AGENTS.md`: replace any "install glua_ls binary on PATH" or "fetch GLua API stubs" snippets with a short pointer to `pwsh -File scripts/install-tools.ps1`. The `glua-lsp:install-glua-ls` skill covers the recovery flow.
 
-## Verify and commit
+During the transition from Claude-only guidance:
 
-Before pushing, run `pwsh -File scripts/glua-check.ps1` locally. It should install the pinned tools (one-time download per fresh repo) and either print `No issues found` or surface real diagnostics from the codebase. The latter means the codebase has work to do — that's separate from the port and should be a follow-up.
+- If `AGENTS.md` exists, update it and keep `CLAUDE.md` as a thin import plus Claude-only notes.
+- If only `CLAUDE.md` exists, update the existing section without creating duplicate guidance, and flag the repository for the planned `AGENTS.md` migration.
 
-After pushing, branch protection's required status check name moves from `glua-check` (or `GLua Check` from the old standalone workflow) to `CI / GLua Check`. Flag this to the user — they'll need to update the rule.
+## Verify and review
+
+Before requesting review, run `pwsh -File scripts/glua-check.ps1` locally. It should install the pinned tools (one-time download per fresh repo) and either print `No issues found` or surface real diagnostics from the codebase. The latter means the codebase has work to do — that's separate from the port and should be a follow-up.
+
+Present the resulting diff and check output for review. Commit or push only when the user's repository instructions or current request authorize it.
+
+If the change is later pushed, branch protection's required status check name moves from `glua-check` (or `GLua Check` from the old standalone workflow) to `CI / GLua Check`. Flag this to the user because the rule may need updating.
 
 ## Reference repos (copy-from sources)
 

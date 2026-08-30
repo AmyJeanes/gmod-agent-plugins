@@ -1,14 +1,28 @@
 # gmod-claude-plugins
 
-A [Claude Code](https://docs.claude.com/en/docs/claude-code) plugin marketplace for Garry's Mod GLua development.
+A cross-agent plugin marketplace for Garry's Mod GLua development. The repository
+currently keeps its historical Claude-specific name, but the plugin packages are
+structured so both Claude Code and Codex can consume the useful parts.
+
+## Marketplace files
+
+- `.claude-plugin/marketplace.json` is the Claude Code marketplace. It includes
+  the `lspServers` declaration that launches each project's pinned
+  `.tools/bin/glua_ls.exe`.
+- `.agents/plugins/marketplace.json` is the Codex marketplace. Codex consumes the
+  bundled skills via each plugin's `.codex-plugin/plugin.json`.
+
+Codex does not consume Claude's `lspServers` field, so this plugin is
+skills-only in Codex for now. Native Codex CLI LSP support is tracked in
+[openai/codex#8745](https://github.com/openai/codex/issues/8745).
 
 ## Plugins
 
 | Plugin | Description | Required binary |
 | :----- | :---------- | :-------------- |
-| [`glua-lsp`](plugins/glua-lsp) | GLua language server (`glua_ls`) — diagnostics, hover, jump-to-definition for `.lua` files | `glua_ls` from the latest `Pollux12/gmod-glua-ls` GitHub release |
+| [`glua-lsp`](plugins/glua-lsp) | GLua language server setup and tooling workflows for `.lua` files | `glua_ls` from the latest `Pollux12/gmod-glua-ls` GitHub release |
 
-## Install
+## Claude Code install
 
 From inside Claude Code:
 
@@ -18,6 +32,18 @@ From inside Claude Code:
 ```
 
 Each plugin's README documents which external binaries it needs.
+
+## Codex install
+
+From Codex CLI, add this repository as a local marketplace and install the
+plugin:
+
+```powershell
+codex plugin marketplace add C:\path\to\gmod-claude-plugins
+codex plugin add glua-lsp@gmod-agent-plugins
+```
+
+Start a new Codex session after installing so the bundled skills are visible.
 
 ## Project-scoped install
 
