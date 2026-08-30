@@ -1,8 +1,8 @@
-# gmod-claude-plugins
+# gmod-agent-plugins
 
-A cross-agent plugin marketplace for Garry's Mod GLua development. The repository
-currently keeps its historical Claude-specific name, but the plugin packages are
-structured so both Claude Code and Codex can consume the useful parts.
+A cross-agent plugin marketplace for Garry's Mod GLua development. Plugin
+packages are structured so both Claude Code and Codex can consume the useful
+parts.
 
 ## Marketplace files
 
@@ -27,8 +27,8 @@ skills-only in Codex for now. Native Codex CLI LSP support is tracked in
 From inside Claude Code:
 
 ```
-/plugin marketplace add AmyJeanes/gmod-claude-plugins
-/plugin install glua-lsp@gmod-claude-plugins
+/plugin marketplace add AmyJeanes/gmod-agent-plugins
+/plugin install glua-lsp@gmod-agent-plugins
 ```
 
 Each plugin's README documents which external binaries it needs.
@@ -39,7 +39,7 @@ From Codex CLI, add this repository as a local marketplace and install the
 plugin:
 
 ```powershell
-codex plugin marketplace add C:\path\to\gmod-claude-plugins
+codex plugin marketplace add C:\path\to\gmod-agent-plugins
 codex plugin add glua-lsp@gmod-agent-plugins
 ```
 
@@ -52,15 +52,15 @@ To have collaborators on a specific project be auto-prompted to install these pl
 ```json
 {
   "extraKnownMarketplaces": {
-    "gmod-claude-plugins": {
+    "gmod-agent-plugins": {
       "source": {
         "source": "github",
-        "repo": "AmyJeanes/gmod-claude-plugins"
+        "repo": "AmyJeanes/gmod-agent-plugins"
       }
     }
   },
   "enabledPlugins": {
-    "glua-lsp@gmod-claude-plugins": true
+    "glua-lsp@gmod-agent-plugins": true
   }
 }
 ```

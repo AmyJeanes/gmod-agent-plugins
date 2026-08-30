@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "gmod-claude-plugins",
+  "name": "gmod-agent-plugins",
   "description": "Claude Code plugins for Garry's Mod GLua development",
   "owner": {
     "name": "Amy Jeanes"

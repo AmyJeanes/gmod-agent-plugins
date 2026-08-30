@@ -47,7 +47,7 @@ Create one. It needs to do two things, each idempotent:
 1. **Download pinned `glua_ls` and `glua_check` releases from `Pollux12/gmod-glua-ls`** into a versioned cache under `.tools/glua-ls/<ver>/` and `.tools/glua-check/<ver>/`, then mirror the binaries to `.tools/bin/glua_ls(.exe)` and `.tools/bin/glua_check(.exe)`. Claude's plugin launches `.tools/bin/glua_ls.exe` from the project root.
 2. **Download the latest `luttje/glua-api-snippets` `.lua.zip` release** into `.tools/glua-api/`, with a `.tools/glua-api/.version` marker so it only re-downloads on version change. Reference this directory from `.luarc.json` under `workspace.library`.
 
-Pin both versions as constants at the top of the script so contributors and CI run the exact same engine. The plugin's own repo (`AmyJeanes/gmod-claude-plugins`) sources several reference projects (TARDIS, Doors) — copy `scripts/install-tools.ps1` and `scripts/glua-check.ps1` from one of those if you want a working starting point. Use Renovate's `customManagers` regex to auto-bump pinned versions:
+Pin both versions as constants at the top of the script so contributors and CI run the exact same engine. The plugin's own repo (`AmyJeanes/gmod-agent-plugins`) sources several reference projects (TARDIS, Doors) — copy `scripts/install-tools.ps1` and `scripts/glua-check.ps1` from one of those if you want a working starting point. Use Renovate's `customManagers` regex to auto-bump pinned versions:
 
 ```jsonc
 // .github/renovate.json

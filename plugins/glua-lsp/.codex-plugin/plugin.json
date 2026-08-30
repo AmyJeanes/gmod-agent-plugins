@@ -6,8 +6,8 @@
     "name": "Amy Jeanes",
     "url": "https://github.com/AmyJeanes"
   },
-  "homepage": "https://github.com/AmyJeanes/gmod-claude-plugins/tree/main/plugins/glua-lsp",
-  "repository": "https://github.com/AmyJeanes/gmod-claude-plugins",
+  "homepage": "https://github.com/AmyJeanes/gmod-agent-plugins/tree/main/plugins/glua-lsp",
+  "repository": "https://github.com/AmyJeanes/gmod-agent-plugins",
   "license": "MIT",
   "keywords": [
     "garrys-mod",
